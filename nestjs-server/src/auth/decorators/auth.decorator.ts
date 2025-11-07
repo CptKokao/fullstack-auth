@@ -1,0 +1,16 @@
+import { applyDecorators, UseGuards } from '@nestjs/common';
+
+import { AuthGuard } from '../guards/auth.guard';
+import { RolesGuard } from '../guards/roles.guard';
+
+import { Roles } from './roles.decorator';
+import { User, UserRoles } from 'drizzle/schema';
+
+// Проверка request.session.userId и поиск users
+export function Authorization(...roles: UserRoles[]) {
+  if (roles.length > 0) {
+    return applyDecorators(Roles(...roles), UseGuards(AuthGuard, RolesGuard));
+  }
+
+  return applyDecorators(UseGuards(AuthGuard));
+}

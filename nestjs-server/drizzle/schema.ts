@@ -1,5 +1,3 @@
-// src/drizzle/schema.ts
-
 import {
   pgTable,
   text,
@@ -23,8 +21,16 @@ export enum AuthMethod {
   GOOGLE = 'GOOGLE',
   YANDEX = 'YANDEX',
 }
+export enum UserRoles {
+  REGULAR = 'REGULAR',
+  ADMIN = 'ADMIN',
+}
 
-export const userRoleEnum = pgEnum('user_role', ['REGULAR', 'ADMIN']);
+export const userRoleEnum = pgEnum('user_role', [
+  UserRoles.ADMIN,
+  UserRoles.REGULAR,
+]);
+
 export const authMethodEnum = pgEnum('auth_method', [
   AuthMethod.CREDENTIALS,
   AuthMethod.GOOGLE,
@@ -63,7 +69,7 @@ export const users = pgTable(
     picture: text('picture'),
 
     // role UserRole @default(REGULAR)
-    role: userRoleEnum('role').default('REGULAR').notNull(),
+    role: userRoleEnum('role').default(UserRoles.REGULAR).notNull(),
 
     // isVerified Boolean @default(false) @map("is_verified")
     isVerified: boolean('is_verified').default(false).notNull(),
