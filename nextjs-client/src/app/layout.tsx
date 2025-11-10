@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "@/shared/styles/globals.css";
+import { MainProvider } from "@/shared/providers";
+import { ToggleTheme } from "@/shared/components/ui";
 
 export const metadata: Metadata = {
 	title: {
@@ -19,14 +21,14 @@ export default function RootLayout({
   return (
   		<html lang='en'>
 			<body className={GeistSans.variable}>
-				{/* <MainProvider> */}
+				<MainProvider>
 					<div className='relative flex min-h-screen flex-col'>
-						{/* <ToggleTheme /> */}
+						<ToggleTheme />
 						<div className='flex h-screen w-full items-center justify-center px-4'>
 							{children}
 						</div>
 					</div>
-				{/* </MainProvider> */}
+				</MainProvider>
 			</body>
 		</html>
   );
