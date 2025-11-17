@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import "@/shared/styles/globals.css";
-import { MainProvider } from "@/shared/providers";
-import { ToggleTheme } from "@/shared/components/ui";
+import { GeistSans } from 'geist/font/sans'
+import type { Metadata } from 'next'
+
+import { ToggleTheme } from '@/shared/components/ui'
+import { MainProvider } from '@/shared/providers'
+import '@/shared/styles/globals.css'
 
 export const metadata: Metadata = {
 	title: {
@@ -14,12 +15,12 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode
 }>) {
-  return (
-  		<html lang='en'>
+	return (
+		<html lang='en'>
 			<body className={GeistSans.variable}>
 				<MainProvider>
 					<div className='relative flex min-h-screen flex-col'>
@@ -31,5 +32,5 @@ export default function RootLayout({
 				</MainProvider>
 			</body>
 		</html>
-  );
+	)
 }
